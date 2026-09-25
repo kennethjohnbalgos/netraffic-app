@@ -1,6 +1,6 @@
 cask "netraffic" do
-  version "1.0.0"
-  sha256 "12837f55e533f54aac2a68d36646ace5c8bd3d692df06eedea52f4c4dc87aa8c"
+  version "1.1.0"
+  sha256 "f7a1e6c34b42bff4e08a95b31aa33f1d4bb009a6db5be53171bc154358f4fbac"
 
   url "https://github.com/kennethjohnbalgos/netraffic-app/archive/refs/tags/v#{version}.zip"
   name "Netraffic"

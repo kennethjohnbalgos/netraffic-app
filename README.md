@@ -9,6 +9,17 @@ Netraffic is a small macOS menu bar app that shows your current upload and downl
 
 ## Install the ready-made app
 
+### With Homebrew
+
+```sh
+brew tap kennethjohnbalgos/netraffic-app https://github.com/kennethjohnbalgos/netraffic-app.git
+brew install --cask kennethjohnbalgos/netraffic-app/netraffic
+```
+
+This uses the cask in this repository to place `Netraffic.app` in Applications. Homebrew can later update it with `brew upgrade --cask netraffic` when a new version is published. To remove it, run `brew uninstall --cask netraffic`.
+
+### Manually
+
 1. Download this repository as a ZIP from GitHub and unzip it, or clone it with Git.
 2. Move `Netraffic.app` to your Applications folder.
 3. Open `Netraffic.app`. If macOS warns that it cannot verify the developer, Control-click the app and choose **Open**, then confirm. This app is not notarized.

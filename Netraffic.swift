@@ -1,4 +1,5 @@
 import AppKit
+import ServiceManagement
 import SystemConfiguration
 
 private struct Counters {
@@ -39,7 +40,7 @@ private func speed(_ bytesPerSecond: Double) -> String {
     return "\(number)\(units[unit])"
 }
 
-final class NetrafficApp: NSObject, NSApplicationDelegate {
+final class NetrafficApp: NSObject, NSApplicationDelegate, NSMenuDelegate {
     private var statusItem: NSStatusItem!
     private let uploadLabel = NSTextField(labelWithString: "↑ —")
     private let downloadLabel = NSTextField(labelWithString: "↓ —")
@@ -47,6 +48,7 @@ final class NetrafficApp: NSObject, NSApplicationDelegate {
     private var previous: Counters?
     private var previousTime: TimeInterval = 0
     private var interfaceName: String?
+    private let startAtLoginItem = NSMenuItem(title: "Start at Login", action: #selector(toggleStartAtLogin), keyEquivalent: "")
 
     func applicationDidFinishLaunching(_ notification: Notification) {
         statusItem = NSStatusBar.system.statusItem(withLength: 44)
@@ -74,11 +76,54 @@ final class NetrafficApp: NSObject, NSApplicationDelegate {
         }
 
         let menu = NSMenu()
+        startAtLoginItem.target = self
+        menu.addItem(startAtLoginItem)
+        menu.addItem(.separator())
         menu.addItem(NSMenuItem(title: "Quit Netraffic", action: #selector(quit), keyEquivalent: "q"))
+        menu.delegate = self
         statusItem.menu = menu
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(update), userInfo: nil, repeats: true)
         timer?.tolerance = 0.1
         update()
+    }
+
+    func menuWillOpen(_ menu: NSMenu) {
+        refreshStartAtLoginState()
+    }
+
+    @objc private func toggleStartAtLogin() {
+        let service = SMAppService.mainApp
+        do {
+            if service.status == .enabled || service.status == .requiresApproval {
+                try service.unregister()
+            } else {
+                try service.register()
+                if service.status == .requiresApproval {
+                    let alert = NSAlert()
+                    alert.messageText = "Allow Netraffic to start at login"
+                    alert.informativeText = "Enable Netraffic in System Settings → General → Login Items to finish setting this up."
+                    alert.addButton(withTitle: "Open Login Items")
+                    alert.addButton(withTitle: "Later")
+                    if alert.runModal() == .alertFirstButtonReturn {
+                        SMAppService.openSystemSettingsLoginItems()
+                    }
+                }
+            }
+        } catch {
+            let alert = NSAlert()
+            alert.messageText = "Could not change Start at Login"
+            alert.informativeText = error.localizedDescription
+            alert.runModal()
+        }
+        refreshStartAtLoginState()
+    }
+
+    private func refreshStartAtLoginState() {
+        switch SMAppService.mainApp.status {
+        case .enabled: startAtLoginItem.state = .on
+        case .requiresApproval: startAtLoginItem.state = .mixed
+        default: startAtLoginItem.state = .off
+        }
     }
 
     @objc private func update() {

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0"><dict>
+  <key>CFBundleName</key><string>Netraffic</string>
+  <key>CFBundleDisplayName</key><string>Netraffic</string>
+  <key>CFBundleIdentifier</key><string>local.netraffic</string>
+  <key>CFBundleExecutable</key><string>Netraffic</string>
+  <key>CFBundlePackageType</key><string>APPL</string>
+  <key>CFBundleIconFile</key><string>AppIcon</string>
+  <key>LSMinimumSystemVersion</key><string>13.0</string>
+  <key>LSUIElement</key><true/>
+</dict></plist>

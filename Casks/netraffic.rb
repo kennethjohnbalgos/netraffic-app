@@ -7,7 +7,7 @@ cask "netraffic" do
   desc "Menu bar network upload and download speed monitor"
   homepage "https://github.com/kennethjohnbalgos/netraffic-app"
 
-  depends_on macos: ">= :ventura"
+  depends_on macos: :ventura
 
   app "netraffic-app-#{version}/Netraffic.app"
 end

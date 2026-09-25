@@ -16,7 +16,7 @@ brew tap kennethjohnbalgos/netraffic-app https://github.com/kennethjohnbalgos/ne
 brew install --cask kennethjohnbalgos/netraffic-app/netraffic
 ```
 
-This uses the cask in this repository to place `Netraffic.app` in Applications. Homebrew can later update it with `brew upgrade --cask netraffic` when a new version is published. To remove it, run `brew uninstall --cask netraffic`.
+This uses the cask in this repository to place `Netraffic.app` in Applications. Homebrew can later update it with `brew upgrade --cask netraffic` when a new version is published.
 
 ### Manually
 
@@ -25,6 +25,13 @@ This uses the cask in this repository to place `Netraffic.app` in Applications. 
 3. Open `Netraffic.app`. This release is not notarized by Apple, so macOS may block its first launch. If you see **“Netraffic” Not Opened**, click **Done**, then open **System Settings → Privacy & Security**. Scroll to **Security**, click **Open Anyway** for Netraffic, and confirm with your Mac password if prompted. Apple makes this option available for about an hour after the blocked launch. [Apple's instructions](https://support.apple.com/en-us/102445) explain the same process.
 
 Netraffic runs in the menu bar and does not show a Dock icon or main window. Click its speed display to find **Quit Netraffic**. To have it open when you sign in, add it in **System Settings → General → Login Items**.
+
+## Uninstall
+
+First click the speed display in the menu bar and choose **Quit Netraffic**. If you added Netraffic to **System Settings → General → Login Items**, remove it there too.
+
+- **Homebrew installation:** Run `brew uninstall --cask netraffic`. You can optionally remove the tap afterward with `brew untap kennethjohnbalgos/netraffic-app`.
+- **Manual installation:** Move `Netraffic.app` from your Applications folder to the Trash.
 
 ## Build it yourself
 

@@ -22,7 +22,7 @@ This uses the cask in this repository to place `Netraffic.app` in Applications. 
 
 1. Download this repository as a ZIP from GitHub and unzip it, or clone it with Git.
 2. Move `Netraffic.app` to your Applications folder.
-3. Open `Netraffic.app`. If macOS warns that it cannot verify the developer, Control-click the app and choose **Open**, then confirm. This app is not notarized.
+3. Open `Netraffic.app`. This release is not notarized by Apple, so macOS may block its first launch. If you see **“Netraffic” Not Opened**, click **Done**, then open **System Settings → Privacy & Security**. Scroll to **Security**, click **Open Anyway** for Netraffic, and confirm with your Mac password if prompted. Apple makes this option available for about an hour after the blocked launch. [Apple's instructions](https://support.apple.com/en-us/102445) explain the same process.
 
 Netraffic runs in the menu bar and does not show a Dock icon or main window. Click its speed display to find **Quit Netraffic**. To have it open when you sign in, add it in **System Settings → General → Login Items**.
 

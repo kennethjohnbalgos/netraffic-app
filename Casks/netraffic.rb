@@ -10,4 +10,10 @@ cask "netraffic" do
   depends_on macos: :ventura
 
   app "netraffic-app-#{version}/Netraffic.app"
+
+  caveats <<~EOS
+    Netraffic is not notarized by Apple. If macOS blocks its first launch,
+    open System Settings > Privacy & Security, scroll to Security, and click
+    Open Anyway for Netraffic. Confirm with your Mac password if prompted.
+  EOS
 end
